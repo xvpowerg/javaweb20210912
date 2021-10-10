@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+	function loginGetAccAndPass(){				
+		let account = document.getElementById("accountId").value;
+		let password = document.getElementById("passId").value;
+		let msg = document.getElementById("msg");
+		console.log(`Test!!!:${account} : ${password}`);	
+		fetch(`login?account=${account}&password=${password}`,
+				{method:"get"}).then(resp=>{
+					return resp.text();					
+				}).then(text=>{					
+					msg.innerText = text;										
+				});		
+	}
+
+</script>
+</head>
+<body>
+	<form >
+		<input type="text" id="accountId" name="account" placeholder="帳號"/>
+	    <input type="password" id="passId" name="password" placeholder="密碼"/>
+	    <button type="button" onclick="loginGetAccAndPass()">確定</button>
+	</form>
+	<div id="msg"></div>
+
+</body>
+</html>
